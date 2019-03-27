@@ -45,7 +45,7 @@ const (
 	corsOriginHeader           string = "Origin"
 	corsVaryHeader             string = "Vary"
 	corsOriginMatchAll         string = "*"
-	corsHeaderMatchAll         string = "*"
+	matchAll         		   string = "*"
 )
 
 func (ch *cors) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -347,7 +347,7 @@ func (ch *cors) isOriginAllowed(origin string) bool {
 
 func (ch *cors) isMatch(needle string, haystack []string) bool {
 	for _, v := range haystack {
-		if v == needle || corsHeaderMatchAll == needle {
+		if v == needle || v == matchAll {
 			return true
 		}
 	}
